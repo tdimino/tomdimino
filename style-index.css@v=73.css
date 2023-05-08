@@ -1,0 +1,250 @@
+@import "normalize.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,900');
+
+:root {
+    --secondaryColor: #266e94;
+    --sectionHeading: #444;
+    --textColorBlack: #333;
+    --textColorWhite: #fff;
+    font-size: 62.5%;
+}
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(Kaphtor/Dolphins.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    background-color: var(--textColorBlack);
+    font-size: 1.6rem; 
+}
+
+header {
+    text-align:center;
+    padding-top:4rem;
+}
+
+footer {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+h1, h4 {
+    font-size:2.4rem;
+}
+
+h2 {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+/*Minoan-Phoenician Inscription*/
+
+.Kaphtor div {
+    display:inline;
+    margin:0 0.4rem 0 0.4rem;
+}
+
+.Kaphtor object {
+    width:4rem;
+    height:4rem;
+    transition: all .5s;
+    -o-transition: all .5s; 
+    -moz-transition: all .5s; 
+    -webkit-transition: all .5s; 
+}
+
+/*Avatar, Profession & Social Media*/
+
+.Profile {
+    text-align: center;
+    padding-top: 1.6rem;
+    margin-bottom: 4rem;
+}
+
+.Avatar {
+    width: 15rem;
+    border-radius: 50%;
+    border: 3px solid var(--textColorWhite);
+    box-sizing: content-box;
+    margin-bottom: 1.6rem;
+}
+
+.Nombre {
+    font-family:'Roboto';
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0;
+    color: var(--textColorWhite);
+    transition: all .5s;
+    -o-transition: all .5s; 
+    -moz-transition: all .5s; 
+    -webkit-transition: all .5s; 
+}
+
+.Profile hr {
+    margin: 2rem auto;
+    width: 10rem;
+    border: 1px solid var(--textColorWhite);
+}
+
+.Profession {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    color: var(--textColorWhite);
+    transition: all .5 linear; 
+    -o-transition: all .5 linear; 
+    -moz-transition: all .5 linear; 
+    -webkit-transition: all .5 linear;
+
+}
+
+.Social-Media a {
+    text-decoration: none;
+}
+
+.Social-Media a:not(:last-child) {
+    margin-right:0.5em;
+}
+
+.Social-Media-Icons {
+    color: #9e989e;
+    font-size: 2.8rem;
+}
+
+.Social-Media-Icons:hover {
+    color: var(--textColorWhite);
+}
+
+/*About Me*/
+
+.Self-Summary {
+    background-color: rgba(230, 230, 230, 0.88);
+    padding: 3rem;
+    margin: 0 auto;
+    max-width: 90rem;
+}
+
+.Self-Summary hr {
+    width: 10rem;
+    border: 1px solid #a9a7a7;
+    margin-bottom: 2.5rem;
+}
+
+.Heading {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    font-weight: 700;
+    color: var(--sectionHeading);
+    margin-top:0;
+    margin-bottom: 1.6rem;
+}
+
+.Paragraph {
+    font-size: 1.8rem;
+    color: var(--textColorBlack);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+.Passione {
+    font-weight:500;
+    text-decoration:underline;
+}
+
+.Paragraph-Link {
+    color: var(--textColorBlack);
+    text-decoration: none;
+    transition: all .5s;
+    -o-transition: all .5s; 
+    -moz-transition: all .5s; 
+    -webkit-transition: all .5s; 
+}
+
+.Paragraph-Link:hover {
+    color: var(--secondaryColor);
+}
+
+/*Contact Me*/
+
+.Contact {
+    text-align:center;
+    font-size:1.8rem;
+    font-family:'Roboto Mono', monospace;
+    color: var(--secondaryColor);
+    margin-bottom: 0
+}
+
+.Contact-Link{
+    color: var(--secondaryColor);
+    text-decoration:none;
+}
+
+.Post-Script {
+    font-size: 1.8rem;
+    color: var(--textColorBlack);
+    line-height: 1.8;
+    margin: 2.5rem 0 2.5rem 0;
+}
+
+.PS {
+    font-weight:500;
+}
+
+.Copyright {
+    color: #9e989e;
+    font-size: 1.4rem;
+}
+
+/* Media Queries to Maximize Responsiveness */
+
+@media screen and (min-width: 768px) {
+    .Profile {
+        padding-top: 3.5rem;
+    }
+    .Avatar {
+        width: 20rem;
+    }
+    .Nombre {
+        font-size: 6rem;
+    }
+    .Kaphtor object {
+        height: 6rem;
+        width: 6rem;
+    }
+    .Profession {
+        font-size: 1.8rem;
+    }
+    .Profile hr {
+        border-width: 2px;
+    }
+    .Self-Summary {
+        padding: 3rem 10rem;
+    }
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 1024px) {
+    html, body {
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(Kaphtor/iPhone-Dolphins.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .profile {
+        min-height: 87vh;
+    }
+}
