@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var kaphtorObjects = document.querySelectorAll('.Kaphtor object');
     kaphtorObjects.forEach(function(object) {
         object.addEventListener('click', function() {
-            setTimeout(function() { // An aeon's repose 
+            setTimeout(function() { 
                 if (isDesiredTitle(object.title)) {
                     // Flash like a cock, then spin
                     object.classList.add('flashColor', 'rotate');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         object.classList.remove('flashColor', 'rotate');
                     }, 2000); // Reign of Kronos in the space between 
                 }
-            }, 500); 
+            }, 500); // An aeon's repose 
         });
     });
 });
