@@ -68,10 +68,6 @@ h2 {
   transform: perspective(1000px) translateZ(-50px);
 }
 
-.mirrored {
-  transform: scaleX(-1);
-}
-
 /*Avatar, Profession & Social Media*/
 
 .Profile {
