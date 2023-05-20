@@ -1,24 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var desiredTitles = ["nūn", "mēm", "dālet", "mēm", "tāw"];
 
-    function isDesiredTitle(title) {
-        return desiredTitles.includes(title);
+    // Define an array of desired symbols
+    const desiredSymbols = ['nūn', 'mēm', 'dālet', 'mēm', 'tāw'];
+
+    // Define a function to rotate an SVG element around its Y axis
+    function rotateY(svg, degrees, duration) {
+        return gsap.to(svg, {
+            rotationY: degrees,
+            duration: duration,
+            perspective: 1000,
+            scale3D: 1, 1, 1
+        });
     }
 
-    var kaphtorSVGs = document.querySelectorAll('.Kaphtor svg');
+    // Get all of the SVG elements with the class "Kaphtor"
+    const kaphtorSVGs = document.querySelectorAll('.Kaphtor svg');
 
-    // Listen for my Kaph and click
+    // Iterate over the SVG elements and add a click event listener to each one
     kaphtorSVGs.forEach(function(svg) {
+
         // Attach the click event listener to the SVG root element
         svg.addEventListener('click', function() {
-            if (isDesiredTitle(svg.id)) {
-                // Spin
-                gsap.to(svg, { rotationY: 360, duration: 2 });
 
-                // Omit thy spark and cry until thy play is done
-                setTimeout(function() {
-                    gsap.to(svg, { rotationY: 0, duration: 2 });
-                }, 2000); // Reign of Kronos in the space between 
+            // Check if the ID of the clicked element is in the desired symbols array
+            if (desiredSymbols.includes(svg.id)) {
+
+                // Rotate the element around its Y axis for 2 seconds
+                const animationId = requestAnimationFrame(function() {
+                    rotateY(svg, 360, 2);
+                    requestAnimationFrame(this);
+                });
+
+                // After 2 seconds, stop rotating the element
+                cancelAnimationFrame(animationId);
             }
         });
     });
