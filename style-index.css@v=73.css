@@ -54,18 +54,25 @@ h2 {
 }
 
 .Kaphtor .symbol {
-    fill:#66023C;
-    fill-opacity:0.2;
-    stroke:#FFFFFF;
-    stroke-width:3px;
-    width:4rem;
-    height:4rem;
-    transition: all .5s;
-    -o-transition: all .5s; 
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
-    transform-style: preserve-3d; 
+  fill: #66023C;
+  fill-opacity: 0.2;
+  stroke: #FFFFFF;
+  stroke-width: 3px;
+  width: 4rem;
+  height: 4rem;
+  transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) translateZ(-50px);
 }
+
+
+.symbol.rotate {
+  transform: perspective(1000px) translateZ(-50px) rotateY(360deg);
+}
+
 
 /*Avatar, Profession & Social Media*/
 
