@@ -11,17 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
     kaphtorSVGs.forEach(function(svg) {
         // Attach the click event listener to the SVG root element
         svg.addEventListener('click', function() {
-            setTimeout(function() {
-                if (isDesiredTitle(svg.id)) {
-                    // Flash like a cock, then spin
-                    svg.classList.add('flashColor', 'rotate');
+            if (isDesiredTitle(svg.id)) {
+                // Spin
+                gsap.to(svg, { rotationY: 360, duration: 2 });
 
-                    // Omit thy spark and cry until thy play is done
-                    setTimeout(function() {
-                        svg.classList.remove('flashColor', 'rotate');
-                    }, 2000); // Reign of Kronos in the space between 
-                }
-            }, 500); // An aeon's repose 
+                // Omit thy spark and cry until thy play is done
+                setTimeout(function() {
+                    gsap.to(svg, { rotationY: 0, duration: 2 });
+                }, 2000); // Reign of Kronos in the space between 
+            }
         });
     });
 });
