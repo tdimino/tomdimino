@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Track the current state of the SVG element
     let isClicked = false;
 
+    // Add the initial mirrored appearance class
+    svg.classList.add('mirrored');
+
     // Attach the click event listener to the SVG root element
     svg.addEventListener('click', function() {
 
@@ -20,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Invert the element if it's not already clicked
         if (!isClicked) {
-          svg.style.transform = "scaleX(-1)";
+          svg.classList.remove('mirrored');
           isClicked = true;
         } else {
           // Restore the original appearance
-          svg.style.transform = "scaleX(1)";
+          svg.classList.add('mirrored');
           isClicked = false;
         }
       }
