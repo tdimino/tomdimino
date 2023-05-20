@@ -68,6 +68,9 @@ h2 {
   transform: perspective(1000px) translateZ(-50px);
 }
 
+.mirrored {
+  transform: scaleX(-1);
+}
 
 .symbol.rotate {
   transform: perspective(1000px) translateZ(-50px) rotateY(360deg);
