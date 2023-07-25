@@ -6,4 +6,4 @@ If you're here, it's safe to say you're a bit of a digger (like myself), incline
 
 # I believe in you already.
 
-Peruse [my agency portfolio](https://www.minoanmystery.org) to study how I've applied 'content strategy' for startups, enterprise-grade websites, and non-profit projects that benefit humanity as a whole. As your friendly, modern-day Minoan, I wield the wisdom of antiquity and posterity to get to the heart of what you do, and make it clearer in the world.  
+Peruse [my agency portfolio](https://www.minoanmystery.org) to study how I've applied 'content strategy' for startups, enterprise-grade websites, and non-profit projects that benefit humanity as a whole. As your friendly, modern-day Minoan, I wield the lens of antiquity and posterity to get to the heart of what you do, and make it clearer in the world.  
