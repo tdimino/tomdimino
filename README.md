@@ -1,8 +1,8 @@
 # 'At the zenith of the Information Age, a writer, philosopher, and lover of languages appears.' 
 
-*Salvete*, *khairete*, and *shalom*, my friends! I'm Tauma de Minu, or Tom di Mino, or simply that most curious 'content designer' with a penchant for poetry, mysticism, and the emerging discipline of ["affective computing."](https://arxiv.org/abs/2302.09582) 
+*Salvete*, *khairete*, and *shalom*, my friends! I'm Tauma de Minu, or Tom di Mino, or simply that most curious of 'content designers' with a penchant for poetry, mysticism, and the emerging discipline of ["affective computing."](https://arxiv.org/abs/2302.09582) 
 
-If you've arrived on this page, it's safe to say you're a bit of a digger (much like myself), inclined to poke around and exhume a subject until you've reached its root and tasted the truth of it. 
+If you've arrived here of all places, it's safe to say you're a bit of a digger (like myself), inclined to poke around and exhume a subject until you've reached the root and tasted the truth of it. 
 
 # I believe in you already.
 
