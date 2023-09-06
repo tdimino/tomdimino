@@ -6,4 +6,4 @@ If you're here, it's safe to say you're a bit of a digger (like myself), incline
 
 # I believe in you already.
 
-I invite you to peruse [my portfolio](https://www.minoanmystery.org) to see how I've implemented 'content strategy' for venerable brands, enterprise-grade sites, and open-source tech that benefits humanity as a whole. As your friendly, modern-day Minoan, I wield the lens of antiquity and posterity to get at the heart of what you do, and make it clearer to the world.  
+I invite you to peruse [my design portfolio](https://www.minoanmystery.org) to see how I've implemented 'content strategy' for venerable brands, enterprise-grade sites, and open-source tech that benefits humanity as a whole. As your friendly, modern-day Minoan, I wield the lens of antiquity and posterity to get at the heart of what you do, and make it clearer to the world.  
