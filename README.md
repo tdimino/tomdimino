@@ -1,4 +1,4 @@
-# 'At the zenith of the Information Age, a writer, philosopher, and lover of languages appears.' 
+# 'At the zenith of the Information Age, a writer, designer, and lover of languages appears.' 
 
 *Salvete*, *khairete*, and *shalom*, my friends! I'm 𐤕𐤌 𐤃𐤉 𐤌𐤍, or Tom di Mino, or that most curious of 'Content Designers' with an 🧿 for poetry, mysticism, and the emerging discipline of ["affective computing."](https://arxiv.org/abs/2302.09582) 
 
