@@ -1,6 +1,6 @@
 # 'At the zenith of the Information Age, a writer, philosopher, and lover of languages appears.' 
 
-*Salvete*, *khairete*, and *shalom*, my friends! I'm 𐤕𐤌 𐤃𐤉 𐤌𐤍, or Tom di Mino, or simply that most curious of 'Content Designers' with an 🧿 for poetry, mysticism, and the emerging discipline of ["affective computing."](https://arxiv.org/abs/2302.09582) 
+*Salvete*, *khairete*, and *shalom*, my friends! I'm 𐤕𐤌 𐤃𐤉 𐤌𐤍, or Tom di Mino, or that most curious of 'Content Designers' with an 🧿 for poetry, mysticism, and the emerging discipline of ["affective computing."](https://arxiv.org/abs/2302.09582) 
 
 If you're here, it's safe to say you're a bit of a digger (like myself), inclined to poke around and exhume a subject until you've reached the root and tasted the truth of it. 
 
