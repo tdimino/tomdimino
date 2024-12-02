@@ -79,7 +79,6 @@ h2 {
 .Avatar {
     width: 15rem;
     border-radius: 50%;
-    border: 3px solid var(--textColorWhite);
     box-sizing: content-box;
     margin-bottom: 1.6rem;
 }
