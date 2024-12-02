@@ -1,3 +1,3 @@
-# Nostalgia for 2018
+# Reach me at contact@tomdimino.com
 
-My first HTML/CSS/JS project, showcasing my copywriting portfolio at the time.
+
