@@ -84,29 +84,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/tomdimino', text: 'Let's talk face-to-face!', color: '#90366a', textColor: '#ffffff', branding: false }); }</script>
 <!-- Calendly badge widget end -->
-
-<!-- Hovering effects for avatar -->
-<script>
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const img = document.querySelector('.Avatar');
-
-img.onclick = function() {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-}
-
-modal.onclick = function() {
-    modal.style.display = "none";
-}
-
-// Close modal with escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape" && modal.style.display === "block") {
-        modal.style.display = "none";
-    }
-});
-</script>
     
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -268,6 +245,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         <p class="Copyright">&copy; Al-Tamarru, 2025</p>
 
     </footer>
+    
+    <script>
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const img = document.querySelector('.Avatar');
+    
+    img.onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+    }
+    
+    modal.onclick = function() {
+        modal.style.display = "none";
+    }
+    
+    // Close modal with escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape" && modal.style.display === "block") {
+            modal.style.display = "none";
+        }
+    });
+    </script>
     
 </body>
 </html>
