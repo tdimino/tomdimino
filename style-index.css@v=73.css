@@ -81,6 +81,12 @@ h2 {
     border-radius: 50%;
     box-sizing: content-box;
     margin-bottom: 1.6rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.Avatar:hover {
+    opacity: 0.8;
 }
 
 .Nombre {
