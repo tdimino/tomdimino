@@ -148,16 +148,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </section>
     
     <section class="Profile">
-        <!-- Image with modal trigger -->
+        
         <img src="TyrianPurple.png" alt="𐌘𐌄𐌓𐌔𐌖" class="Avatar">
-        <!-- Modal -->
-        <div id="imageModal" class="modal">
-            <img class="modal-content" id="modalImage" src="" alt="𐌘𐌄𐌓𐌔𐌖">
-        </div>
-            
-        <h1 class="Nombre">Tom di Mino</h1>
-        <hr>
-        <h2 class="Profession">Tech Writer & AI Designer </h2>
+            <h1 class="Nombre">Tom di Mino</h1>
+            <hr>
+            <h2 class="Profession">Tech Writer & AI Designer </h2>
             
         <div class="Social-Media">
             <a href="https://linkedin.com/in/tomdimino" title="Cognitive Designer with a penchant for poetry" target="_blank">
@@ -245,28 +240,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         <p class="Copyright">&copy; Al-Tamarru, 2025</p>
 
     </footer>
-    
-    <script>
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    const img = document.querySelector('.Avatar');
-    
-    img.onclick = function() {
-        modal.style.display = "block";
-        modalImg.src = this.src;
-    }
-    
-    modal.onclick = function() {
-        modal.style.display = "none";
-    }
-    
-    // Close modal with escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape" && modal.style.display === "block") {
-            modal.style.display = "none";
-        }
-    });
-    </script>
     
 </body>
 </html>
