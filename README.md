@@ -1,3 +1,3 @@
-# Reach me at contact@tomdimino.com
+# Reach me at minoanmystery.org
 
 
