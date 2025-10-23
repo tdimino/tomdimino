@@ -83,6 +83,18 @@ h2 {
     margin-bottom: 1.6rem;
 }
 
+/* Gaze Tracker Styles */
+.gaze-tracker-container {
+    border-radius: 50%;
+    box-sizing: content-box;
+    margin-bottom: 1.6rem;
+    cursor: pointer;
+}
+
+.gaze-tracker-image {
+    display: block;
+}
+
 .Nombre {
     font-family:'Roboto';
     font-size: 4rem;
@@ -216,6 +228,10 @@ h2 {
     }
     .Avatar {
         width: 20rem;
+    }
+    .gaze-tracker-container {
+        width: 20rem !important;
+        height: 20rem !important;
     }
     .Nombre {
         font-size: 6rem;
