@@ -65,7 +65,13 @@ h2 {
   -moz-transition: all 0.5s;
   -webkit-transition: all 0.5s;
   transform-style: preserve-3d;
+  /* Force hardware acceleration on mobile with perspective */
+  -webkit-transform: perspective(1000px) translateZ(-50px);
   transform: perspective(1000px) translateZ(-50px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 }
 
 /*Avatar, Profession & Social Media*/

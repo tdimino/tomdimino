@@ -5,9 +5,17 @@ class SemiticSymbolAnimator {
   constructor() {
     this.symbols = [];
     this.currentBackgroundIndex = 0;
-    this.backgrounds = [
-      'Kaphtor/Dolphins.jpg',  // Default background
-      'Kaphtor/GreatMother-optimized.jpg'  // Alternate background
+
+    // Detect if device is mobile
+    this.isMobile = this.detectMobile();
+
+    // Set backgrounds based on device type
+    this.backgrounds = this.isMobile ? [
+      'Kaphtor/iPhone-Dolphins.jpg',  // Default mobile background
+      'Kaphtor/iPhone-GreatMother.jpg'  // Alternate mobile background
+    ] : [
+      'Kaphtor/Dolphins.jpg',  // Default desktop background
+      'Kaphtor/GreatMother-optimized.jpg'  // Alternate desktop background
     ];
 
     // Initialize when DOM is ready
@@ -20,6 +28,7 @@ class SemiticSymbolAnimator {
 
   init() {
     console.log('Artifex GSAP: Initializing symbol animations');
+    console.log(`Device type: ${this.isMobile ? 'Mobile' : 'Desktop'}`);
 
     // Get all SVG symbols
     const symbolElements = document.querySelectorAll('.symbol');
@@ -28,6 +37,18 @@ class SemiticSymbolAnimator {
     symbolElements.forEach((symbol, index) => {
       this.setupSymbol(symbol, index);
     });
+  }
+
+  detectMobile() {
+    // Check for mobile device using multiple methods
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Check for touch support and common mobile patterns
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isMobileUserAgent = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+    const isSmallScreen = window.innerWidth <= 1024;
+
+    return isTouchDevice && (isMobileUserAgent || isSmallScreen);
   }
 
   setupSymbol(symbolElement, index) {
@@ -86,13 +107,24 @@ class SemiticSymbolAnimator {
     const element = symbolData.element;
 
     // 90-degree rotation in 2D plane (like spinning a card on a table)
+    // Force hardware acceleration on mobile with additional properties
     gsap.to(element, {
       rotateZ: '+=90',  // Z-axis rotation keeps SVG visible and flat
       duration: 0.6,
       ease: 'power2.inOut',
       transformOrigin: 'center center',
+      force3D: true,  // Force GPU acceleration
+      // Explicitly set transform to ensure visibility on mobile Safari
+      onUpdate: function() {
+        // Force repaint on mobile devices
+        if (this.targets()[0]) {
+          this.targets()[0].style.willChange = 'transform';
+        }
+      },
       onComplete: () => {
         symbolData.isAnimating = false;
+        // Remove will-change after animation completes to free resources
+        element.style.willChange = 'auto';
       }
     });
 
