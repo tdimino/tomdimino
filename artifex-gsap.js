@@ -557,7 +557,7 @@ class SemiticSymbolAnimator {
     overlay.style.backgroundSize = 'cover';
     overlay.style.backgroundPosition = 'center center';
     overlay.style.backgroundRepeat = 'no-repeat';
-    overlay.style.backgroundAttachment = 'fixed';
+    overlay.style.backgroundAttachment = this.isMobile ? 'scroll' : 'fixed';
     overlay.style.opacity = '0';
     overlay.style.zIndex = '-1';
     overlay.style.pointerEvents = 'none';
@@ -574,7 +574,7 @@ class SemiticSymbolAnimator {
         document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${nextBackground})`;
         document.body.style.backgroundPosition = 'center center';
         document.body.style.backgroundRepeat = 'no-repeat';
-        document.body.style.backgroundAttachment = 'fixed';
+        document.body.style.backgroundAttachment = this.isMobile ? 'scroll' : 'fixed';
         document.body.style.backgroundSize = 'cover';
         // Remove height constraint to let background extend full page
         document.body.style.height = 'auto';

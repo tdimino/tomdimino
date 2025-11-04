@@ -257,8 +257,8 @@ h2 {
     }
 }
 
-@media only screen 
-and (min-device-width : 320px) 
+@media only screen
+and (min-device-width : 320px)
 and (max-device-width : 1024px) {
     html, body {
         background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(Kaphtor/iPhone-Dolphins.jpg);
@@ -266,6 +266,16 @@ and (max-device-width : 1024px) {
     -moz-background-size: cover;
     -o-background-size: cover;
         background-size: cover;
+    }
+
+    /* Fix symbol visibility on mobile - remove 3D transforms that cause disappearing */
+    .Kaphtor .symbol {
+        -webkit-transform: none !important;
+        transform: none !important;
+        -webkit-backface-visibility: visible !important;
+        backface-visibility: visible !important;
+        -webkit-perspective: none !important;
+        perspective: none !important;
     }
 }
 
