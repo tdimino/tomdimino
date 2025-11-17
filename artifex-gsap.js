@@ -550,8 +550,9 @@ class SemiticSymbolAnimator {
     overlay.style.position = 'fixed';
     overlay.style.top = '0';
     overlay.style.left = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.minHeight = '100vh';
     // Apply the same dark overlay and parallax settings as in CSS
     overlay.style.background = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${nextBackground})`;
     overlay.style.backgroundSize = 'cover';
@@ -576,9 +577,10 @@ class SemiticSymbolAnimator {
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundAttachment = this.isMobile ? 'scroll' : 'fixed';
         document.body.style.backgroundSize = 'cover';
-        // Remove height constraint to let background extend full page
-        document.body.style.height = 'auto';
+        // Ensure background covers full viewport
         document.body.style.minHeight = '100vh';
+        // Apply same background size properties to html element for consistency
+        document.documentElement.style.backgroundSize = 'cover';
         document.body.removeChild(overlay);
       }
     });
