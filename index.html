@@ -8,18 +8,58 @@
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org/",
-  "@type": "Person",
-  "name": "Tom di Mino",
-  "url": "https://www.tomdimino.com",
-  "image": "https://tomdimino.com/Tom-di-Mino.jpg",
-  "sameAs": ["https://www.minoanmystery.org", "https://www.linkedin.com/in/tomdimino/"],
-  "jobTitle": "A.I. Cognitive Designer & Content Engineer",
-  "brand": "Minoan Mystery",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Aldea AI"
-  }  
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.tomdimino.com/#person",
+      "name": "Tom di Mino",
+      "url": "https://www.tomdimino.com",
+      "image": "https://www.tomdimino.com/Tom-di-Mino.jpg",
+      "sameAs": [
+        "https://www.minoanmystery.org",
+        "https://www.linkedin.com/in/tomdimino/",
+        "https://github.com/tdimino",
+        "https://twitter.com/IdaeanDaktyl"
+      ],
+      "jobTitle": "Principal AI/ML Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://aldea.ai/#organization",
+        "name": "Aldea AI",
+        "url": "https://aldea.ai"
+      },
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Large Language Models",
+        "Cognitive Design",
+        "Semitic Linguistics",
+        "Bronze Age Archaeology"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.tomdimino.com/#website",
+      "name": "Tom di Mino",
+      "url": "https://www.tomdimino.com",
+      "description": "Personal website of Tom di Mino, AI/ML engineer and cognitive designer",
+      "author": {
+        "@type": "Person",
+        "@id": "https://www.tomdimino.com/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.tomdimino.com/"
+        }
+      ]
+    }
+  ]
 }
 </script>
     
@@ -62,6 +102,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta property="og:image:width" content="1500">
     <meta property="og:image:height" content="1500">
     <meta property="og:image:type" content="image/png" />
+    <meta name="twitter:creator" content="@IdaeanDaktyl">
+
+    <link rel="canonical" href="https://www.tomdimino.com/">
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">

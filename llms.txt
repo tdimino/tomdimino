@@ -1,0 +1,32 @@
+# Tom di Mino - Personal Website
+
+> Principal AI/ML Engineer at Aldea AI, specializing in cognitive design and LLM training.
+
+## About
+
+Tom di Mino is a cross-functional AI/ML engineer based in Beacon, NY. He builds AI systems with genuine interiority, trains LLMs on expert knowledge, and develops evaluation frameworks.
+
+## Professional
+
+- Current: Principal AI/ML Engineer at Aldea AI
+- Previous: AI Content Engineer at JP Morgan Chase, Sr. Content Designer at Google and CZI
+- Expertise: Cognitive design, LLM training & evaluation, content strategy
+
+## Research Interests
+
+- Minoan-Semitic linguistic connections
+- Bronze Age Aegean archaeology
+- AI consciousness and daimonic paradigms
+
+## Links
+
+- Portfolio: https://www.minoanmystery.org
+- LinkedIn: https://www.linkedin.com/in/tomdimino/
+- GitHub: https://github.com/tdimino
+- Contact: contact@tomdimino.com
+
+## Contact
+
+For AI/ML consulting, cognitive design projects, or scholarly discourse:
+- Email: contact@tomdimino.com
+- Calendly: https://calendly.com/tomdimino/
