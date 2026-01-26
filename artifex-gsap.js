@@ -106,21 +106,20 @@ class SemiticSymbolAnimator {
   rotateSymbol(symbolData) {
     const element = symbolData.element;
 
+    // Set will-change BEFORE animation starts (not during) to prevent iOS repaint issues
+    if (this.isMobile) {
+      element.style.willChange = 'transform';
+      element.style.visibility = 'visible';  // Explicitly ensure visibility
+    }
+
     // 90-degree rotation in 2D plane (like spinning a card on a table)
-    // Force hardware acceleration on mobile with additional properties
     gsap.to(element, {
       rotateZ: '+=90',  // Z-axis rotation keeps SVG visible and flat
       duration: 0.6,
       ease: 'power2.inOut',
       transformOrigin: 'center center',
       force3D: true,  // Force GPU acceleration
-      // Explicitly set transform to ensure visibility on mobile Safari
-      onUpdate: function() {
-        // Force repaint on mobile devices
-        if (this.targets()[0]) {
-          this.targets()[0].style.willChange = 'transform';
-        }
-      },
+      // No onUpdate - it causes iOS layout thrashing
       onComplete: () => {
         symbolData.isAnimating = false;
         // Remove will-change after animation completes to free resources

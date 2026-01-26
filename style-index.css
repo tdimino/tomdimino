@@ -268,13 +268,18 @@ and (max-device-width : 1024px) {
         background-size: cover;
     }
 
-    /* Fix symbol visibility on mobile - keep transforms but remove perspective issues */
+    /* Fix symbol visibility on mobile - reset transforms to prevent disappearing during rotation */
     .Kaphtor .symbol {
         -webkit-backface-visibility: visible !important;
         backface-visibility: visible !important;
         -webkit-perspective: none !important;
         perspective: none !important;
-        /* Remove the transform overrides to allow GSAP rotations */
+        /* Reset the base transform to prevent composite calculation flash */
+        -webkit-transform: none !important;
+        transform: none !important;
+        /* Disable CSS transitions - let GSAP handle all animations */
+        -webkit-transition: none !important;
+        transition: none !important;
     }
 }
 

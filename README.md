@@ -8,4 +8,19 @@ The code animates. The gaze tracks. What was buried cycles back.
 
 ---
 
+## Technical Notes
+
+**Animation System**: GSAP-based 2D rotation with background cycling. Mobile-optimized to prevent Safari compositing issues during transform animations.
+
+**Mobile Compatibility** (Jan 2026):
+- iOS Safari: Symbols rotate smoothly via `rotateZ` with `will-change` pre-set before animation
+- CSS transforms and transitions disabled on mobile to let GSAP control the animation pipeline
+
+**SEO** (Jan 2026):
+- JSON-LD structured data with `@id` entity linking
+- AI crawler optimizations: `llms.txt`, enhanced `robots.txt`
+- Sitemap and canonical URL
+
+---
+
 **tomdimino.com**
