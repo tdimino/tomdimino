@@ -5,6 +5,9 @@ class SemiticSymbolAnimator {
   constructor() {
     this.symbols = [];
     this.currentBackgroundIndex = 0;
+    this.preloadedNext = false;
+    this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.canHover = window.matchMedia('(hover: hover)').matches;
 
     // Detect if device is mobile
     this.isMobile = this.detectMobile();
@@ -37,6 +40,14 @@ class SemiticSymbolAnimator {
     symbolElements.forEach((symbol, index) => {
       this.setupSymbol(symbol, index);
     });
+
+    this.setupProximityGlow();
+    this.scheduleGlints();
+
+    // Mobile has no pointer proximity; first touch anywhere signals intent
+    if (this.isMobile) {
+      document.addEventListener('touchstart', () => this.preloadNextBackground(), { once: true, passive: true });
+    }
   }
 
   detectMobile() {
@@ -58,6 +69,15 @@ class SemiticSymbolAnimator {
       transformPerspective: 1000
     });
 
+    // The inscription is the site's primary interaction: expose it to keyboard and AT
+    const letterName = symbolElement.getAttribute('title') || 'letter';
+    symbolElement.setAttribute('role', 'button');
+    symbolElement.setAttribute('tabindex', '0');
+    symbolElement.setAttribute('aria-label', `${letterName} — change the background`);
+    symbolElement.style.setProperty('--breathe-i', index);
+
+    this.setupGlintLayer(symbolElement);
+
     // Store symbol data
     this.symbols.push({
       element: symbolElement,
@@ -75,14 +95,95 @@ class SemiticSymbolAnimator {
       this.handleSymbolClick(index);
     });
 
-    // Hover effects
-    symbolElement.addEventListener('mouseenter', () => {
-      this.handleHoverEnter(index);
+    // Hover effects - only on devices that can actually hover, so a tap
+    // on touch screens doesn't leave a sticky zoomed letter behind
+    if (this.canHover) {
+      symbolElement.addEventListener('mouseenter', () => {
+        this.handleHoverEnter(index);
+      });
+
+      symbolElement.addEventListener('mouseleave', () => {
+        this.handleHoverLeave(index);
+      });
+    }
+
+    // Keyboard activation mirrors click
+    symbolElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        this.handleSymbolClick(index);
+      }
     });
 
-    symbolElement.addEventListener('mouseleave', () => {
-      this.handleHoverLeave(index);
+    // Focus signals intent just like pointer proximity does
+    symbolElement.addEventListener('focus', () => this.preloadNextBackground());
+  }
+
+  setupGlintLayer(symbolElement) {
+    // Duplicate each letter path as a dash-segment layer the glint travels along
+    symbolElement.querySelectorAll('path').forEach((path) => {
+      const length = path.getTotalLength();
+      const segment = Math.max(24, length * 0.16);
+      const clone = path.cloneNode();
+      clone.removeAttribute('id');
+      clone.classList.add('glint-path');
+      clone.style.setProperty('--glint-seg', `${segment.toFixed(1)}px`);
+      clone.style.setProperty('--glint-len', `${length.toFixed(1)}px`);
+      path.parentNode.appendChild(clone);
     });
+  }
+
+  scheduleGlints() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // One opening wink, then a random letter catches the light every ~8-10s
+    const glintOnce = () => {
+      const symbolData = this.symbols[Math.floor(Math.random() * this.symbols.length)];
+      if (symbolData) {
+        symbolData.element.classList.add('glinting');
+        setTimeout(() => symbolData.element.classList.remove('glinting'), 1700);
+      }
+      setTimeout(glintOnce, gsap.utils.random(8000, 10500));
+    };
+    setTimeout(glintOnce, 2200);
+  }
+
+  setupProximityGlow() {
+    // Letters warm as the pointer nears — sibling effect to the gaze-tracked avatar
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    let pending = false;
+    document.addEventListener('pointermove', (event) => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        const radius = 240;
+        let nearest = 0;
+        this.symbols.forEach(({ element }) => {
+          const rect = element.getBoundingClientRect();
+          const dx = event.clientX - (rect.left + rect.width / 2);
+          const dy = event.clientY - (rect.top + rect.height / 2);
+          const proximity = Math.max(0, 1 - Math.hypot(dx, dy) / radius);
+          const eased = proximity * proximity;
+          nearest = Math.max(nearest, eased);
+          element.style.setProperty('--p', eased.toFixed(3));
+        });
+        if (nearest > 0.25) this.preloadNextBackground();
+      });
+    }, { passive: true });
+  }
+
+  preloadNextBackground() {
+    // Intent preload: the click's reward must land instantly, not after a large fetch
+    if (this.preloadedNext) return;
+    this.preloadedNext = true;
+    const next = this.backgrounds[(this.currentBackgroundIndex + 1) % this.backgrounds.length];
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = next;
+    document.head.appendChild(link);
   }
 
   handleSymbolClick(index) {
@@ -104,6 +205,12 @@ class SemiticSymbolAnimator {
   }
 
   rotateSymbol(symbolData) {
+    // Reduced motion: skip the spin, keep the functional background change
+    if (this.reducedMotion) {
+      symbolData.isAnimating = false;
+      return;
+    }
+
     const element = symbolData.element;
 
     // Set will-change BEFORE animation starts (not during) to prevent iOS repaint issues
@@ -131,6 +238,8 @@ class SemiticSymbolAnimator {
   }
 
   createTearEffect(element, color, startRotation = 0, endRotation = startRotation + 90, rotationDuration = 0.6) {
+    if (this.reducedMotion) return;
+
     // Get the SVG path element(s) to find symbol bounds
     const paths = element.querySelectorAll('path');
     if (paths.length === 0) return;
@@ -336,10 +445,10 @@ class SemiticSymbolAnimator {
         const wobble = Math.sin(t * wobbleSpeed * Math.PI * 2) * wobbleAmount;
         const x = startX + (drift * t) + wobble;
 
+        // Move via transform (compositor-only) - left/top would force layout each frame
         if (!hasBounced && y >= targetY) {
           hasBounced = true;
-          tearWrapper.style.left = targetX + 'px';
-          tearWrapper.style.top = targetY + 'px';
+          tearWrapper.style.transform = `translate(${targetX - startX}px, ${targetY - startY}px)`;
           tl.kill();
           window.requestAnimationFrame(() => {
             // Hand off to bounce animation that slides along the avatar contour
@@ -348,8 +457,7 @@ class SemiticSymbolAnimator {
           return;
         }
 
-        tearWrapper.style.left = x + 'px';
-        tearWrapper.style.top = y + 'px';
+        tearWrapper.style.transform = `translate(${x - startX}px, ${y - startY}px)`;
 
         // Keep organic wobble and stretch on the droplet itself
         const stretch = 1 + (t * 0.18);
@@ -360,6 +468,8 @@ class SemiticSymbolAnimator {
 
   handleHoverEnter(index) {
     const symbolData = this.symbols[index];
+    this.preloadNextBackground();
+    if (this.reducedMotion) return;
 
     // Scale up on hover with smooth easing
     gsap.to(symbolData.element, {
@@ -373,6 +483,7 @@ class SemiticSymbolAnimator {
 
   handleHoverLeave(index) {
     const symbolData = this.symbols[index];
+    if (this.reducedMotion) return;
 
     // Scale back to normal
     gsap.to(symbolData.element, {
@@ -522,8 +633,8 @@ class SemiticSymbolAnimator {
       }, 0)
       .to(wrapper, {
         duration: 0.35,
-        left: `+=${slideX}`,
-        top: `+=${slideY}`,
+        x: `+=${slideX}`,
+        y: `+=${slideY}`,
         ease: 'power2.out'
       }, 0)
       .to(droplet, {
@@ -570,16 +681,14 @@ class SemiticSymbolAnimator {
       duration: 1,
       ease: 'power2.inOut',
       onComplete: () => {
-        // Update body background - use backgroundImage to preserve other properties
+        // Update body background - use backgroundImage to preserve other properties.
+        // Background must stay on body only (html transparent) so it propagates
+        // to the full canvas; painting html too leaves a stale layer past 100vh.
         document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${nextBackground})`;
         document.body.style.backgroundPosition = 'center center';
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundAttachment = this.isMobile ? 'scroll' : 'fixed';
         document.body.style.backgroundSize = 'cover';
-        // Ensure background covers full viewport
-        document.body.style.minHeight = '100vh';
-        // Apply same background size properties to html element for consistency
-        document.documentElement.style.backgroundSize = 'cover';
         document.body.removeChild(overlay);
       }
     });

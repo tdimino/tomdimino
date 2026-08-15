@@ -1,9 +1,8 @@
-@import "normalize.css";
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,900');
+/* normalize.css and Google Fonts load as <link> tags in index.html
+   (parallel, preconnected, display=swap) - no @import chains here */
 
 :root {
-    --secondaryColor: #266e94;
+    --secondaryColor: #1d5674;
     --sectionHeading: #444;
     --textColorBlack: #333;
     --textColorWhite: #fff;
@@ -12,6 +11,13 @@
 
 html, body {
     font-family: 'Roboto', sans-serif;
+    height: 100%;
+    font-size: 1.6rem;
+}
+
+/* Background lives on body only: with html transparent, it propagates to the
+   full canvas, so JS background swaps never leave a stale layer on html. */
+body {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(Kaphtor/Dolphins.jpg);
     background-position: center center;
     background-repeat: no-repeat;
@@ -20,9 +26,7 @@ html, body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100%;
     background-color: var(--textColorBlack);
-    font-size: 1.6rem; 
 }
 
 header {
@@ -35,7 +39,7 @@ footer {
     padding: 4rem 0;
 }
 
-h1, h4 {
+h1, h3 {
     font-size:2.4rem;
 }
 
@@ -55,15 +59,16 @@ h2 {
 
 .Kaphtor .symbol {
   fill: #66023C;
-  fill-opacity: 0.2;
+  /* --p (0-1) is pointer proximity, set per-frame from JS: the letter fills
+     with Tyrian purple and warms with a gold halo as the cursor nears */
+  fill-opacity: calc(0.2 + var(--p, 0) * 0.3);
+  filter: drop-shadow(0 0 calc(var(--p, 0) * 9px) rgba(255, 255, 255, 0.5));
   stroke: #FFFFFF;
   stroke-width: 3px;
-  width: 4rem;
-  height: 4rem;
-  transition: all 0.5s;
-  -o-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -webkit-transition: all 0.5s;
+  width: 4.4rem;
+  height: 4.4rem;
+  cursor: pointer;
+  transition: fill-opacity 0.25s ease-out, filter 0.25s ease-out;
   transform-style: preserve-3d;
   /* Force hardware acceleration on mobile with perspective */
   -webkit-transform: perspective(1000px) translateZ(-50px);
@@ -72,6 +77,60 @@ h2 {
   backface-visibility: hidden;
   -webkit-perspective: 1000;
   perspective: 1000;
+}
+
+/* Glint: a warm light segment travels the letter's own stroke geometry.
+   --glint-seg / --glint-len are set inline by JS from getTotalLength(). */
+.Kaphtor .symbol .glint-path {
+  fill: none;
+  stroke: #e6b3cf;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  opacity: 0;
+  stroke-dasharray: var(--glint-seg) var(--glint-len);
+  stroke-dashoffset: var(--glint-seg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Kaphtor .symbol.glinting .glint-path {
+    animation: kaphtor-glint 1.6s ease-in-out;
+  }
+}
+
+@keyframes kaphtor-glint {
+  0% { stroke-dashoffset: var(--glint-seg); opacity: 0; }
+  12% { opacity: 0.95; }
+  88% { opacity: 0.95; }
+  100% { stroke-dashoffset: calc(-1 * var(--glint-len)); opacity: 0; }
+}
+
+/* Keyboard focus earns the same warmth as pointer proximity */
+.Kaphtor .symbol:focus {
+  fill-opacity: 0.5;
+  filter: drop-shadow(0 0 9px rgba(255, 255, 255, 0.5));
+}
+
+.Kaphtor .symbol:focus-visible {
+  outline: 2px solid #e6b3cf;
+  outline-offset: 6px;
+}
+
+.Kaphtor .symbol:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* On touch there is no proximity: the letters breathe in slow sequence instead */
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  .Kaphtor .symbol {
+    animation: kaphtor-breathe 5.5s ease-in-out infinite;
+    animation-delay: calc(var(--breathe-i, 0) * 1.1s);
+  }
+}
+
+@keyframes kaphtor-breathe {
+  0%, 100% { fill-opacity: 0.2; }
+  50% { fill-opacity: 0.42; }
 }
 
 /*Avatar, Profession & Social Media*/
@@ -94,7 +153,6 @@ h2 {
     border-radius: 50%;
     box-sizing: content-box;
     margin-bottom: 1.6rem;
-    cursor: pointer;
 }
 
 .gaze-tracker-image {
@@ -107,10 +165,6 @@ h2 {
     font-weight: 900;
     margin: 0;
     color: var(--textColorWhite);
-    transition: all .5s;
-    -o-transition: all .5s; 
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
 }
 
 .Profile hr {
@@ -123,22 +177,26 @@ h2 {
     font-family: 'Roboto Mono', monospace;
     font-weight: 500;
     color: var(--textColorWhite);
-    transition: all .5 linear; 
-    -o-transition: all .5 linear; 
-    -moz-transition: all .5 linear; 
-    -webkit-transition: all .5 linear;
 }
 
+.Social-Media {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+/* 4.4rem boxes = 44px minimum touch target */
 .Social-Media a {
     text-decoration: none;
-}
-
-.Social-Media a:not(:last-child) {
-    margin-right:0.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.4rem;
+    height: 4.4rem;
 }
 
 .Social-Media-Icons {
-    color: #9e989e;
+    color: #c4c0c4;
     font-size: 2.8rem;
 }
 
@@ -184,15 +242,15 @@ h2 {
 
 .Paragraph-Link {
     color: var(--textColorBlack);
-    text-decoration: none;
-    transition: all .5s;
-    -o-transition: all .5s; 
-    -moz-transition: all .5s; 
-    -webkit-transition: all .5s; 
+    text-decoration: underline;
+    text-decoration-color: rgba(51, 51, 51, 0.45);
+    text-underline-offset: 0.18em;
+    transition: color 0.3s ease-out, text-decoration-color 0.3s ease-out;
 }
 
 .Paragraph-Link:hover {
     color: var(--secondaryColor);
+    text-decoration-color: var(--secondaryColor);
 }
 
 /*Contact Me*/
@@ -205,9 +263,12 @@ h2 {
     margin-bottom: 0
 }
 
+/* inline-block + padding lifts the tap target to ~44px without breaking rhythm */
 .Contact-Link{
     color: var(--secondaryColor);
     text-decoration:none;
+    display: inline-block;
+    padding: 0.6rem 0.8rem;
 }
 
 .Post-Script {
@@ -222,7 +283,7 @@ h2 {
 }
 
 .Copyright {
-    color: #9e989e;
+    color: #c4c0c4;
     font-size: 1.4rem;
 }
 
@@ -257,11 +318,13 @@ h2 {
     }
 }
 
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 1024px) {
-    html, body {
+/* Touch devices up to tablet width - matches the JS isMobile regime
+   (deprecated device-width queries replaced 2026-08) */
+@media (hover: none) and (max-width: 1024px) {
+    body {
         background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(Kaphtor/iPhone-Dolphins.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -280,11 +343,5 @@ and (max-device-width : 1024px) {
         /* Disable CSS transitions - let GSAP handle all animations */
         -webkit-transition: none !important;
         transition: none !important;
-    }
-}
-
-@media screen and (min-width: 800px) {
-    .profile {
-        min-height: 87vh;
     }
 }

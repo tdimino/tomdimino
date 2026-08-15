@@ -106,7 +106,7 @@
     // Create new img element for face tracking
     const img = document.createElement('img');
     img.className = 'gaze-tracker-image';
-    img.alt = 'Interactive Avatar';
+    img.alt = avatarElement.alt || 'Interactive Avatar';
     img.style.width = '100%';
     img.style.height = '100%';
     img.style.objectFit = 'cover';
@@ -202,11 +202,16 @@
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('touchmove', handleTouchMove, { passive: true });
 
-    // Preload images if enabled
-    if (preload) {
-      preloadImages(function() {
-        console.log('Gaze tracker ready!');
-      });
+    // Preload lazily: 121 images / ~2.3MB is too heavy for page load.
+    // Kick off on the first mousemove (real cursor present); skip entirely
+    // on coarse pointers, where frames load on demand as the touch moves.
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    if (preload && !coarsePointer) {
+      document.addEventListener('mousemove', function kickoffPreload() {
+        preloadImages(function() {
+          console.log('Gaze tracker ready!');
+        });
+      }, { once: true });
     }
 
     // Return API for cleanup
