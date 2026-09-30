@@ -21,6 +21,8 @@ The code animates. The gaze tracks. What was buried cycles back.
 - AI crawler optimizations: `llms.txt`, enhanced `robots.txt`
 - Sitemap and canonical URL
 
+**Favicon** (Sep 2026): Gold 𐤌𐤍 on a blue tile, traced from `Tom-di-Mino-Symbol.png`. Regenerate the full set (`/favicon.ico`, `favicon/`) with `uv run scripts/favicon/build.py`.
+
 ---
 
 **tomdimino.com**
