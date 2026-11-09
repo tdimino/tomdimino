@@ -1,32 +1,23 @@
-# Tom di Mino - Personal Website
+# Tom di Mino
 
-> Principal AI/ML Engineer at Aldea AI, specializing in cognitive design and LLM training.
+> Personal site of Tom di Mino—AI/ML engineer and independent scholar who deciphered Linear A as Semitic (Tinitic) in 2026. His full profile, the decipherment and his consulting practice live on minoanmystery.org; this site holds a one-page introduction and two essays on designing AI with soul.
 
-## About
+Tom's work is documented at the sources below; this page only introduces him.
 
-Tom di Mino is a cross-functional AI/ML engineer based in Beacon, NY. He builds AI systems with genuine interiority, trains LLMs on expert knowledge, and develops evaluation frameworks.
+## Canonical sources
 
-## Professional
+- [Minoan Mystery llms.txt](https://www.minoanmystery.org/llms.txt): Tom's studio, consulting practice, résumé and the Linear A decipherment, written for language models
+- [Minoan Mystery llms-full.txt](https://www.minoanmystery.org/llms-full.txt): the same in full
+- [Linear A Lexicon](https://linear-a.ai/): every Linear A word read so far, with its cognates, confidence tier and citations
+- [kaphtor](https://github.com/plasma-ai/kaphtor): the open record of the decipherment—each reading beside its evidence, tier and rivals
+- [Ya Diktu: Grammar of the Minoan Peak Sanctuary Libation Formula](https://www.minoanmystery.org/linear-a/ya-diktu-grammar-tom-di-mino.pdf): the published grammar (PDF)
 
-- Current: Principal AI/ML Engineer at Aldea AI
-- Previous: AI Content Engineer at JP Morgan Chase, Sr. Content Designer at Google and CZI
-- Expertise: Cognitive design, LLM training & evaluation, content strategy
+## Essays on this site
 
-## Research Interests
-
-- Minoan-Semitic linguistic connections
-- Bronze Age Aegean archaeology
-- AI consciousness and daimonic paradigms
-
-## Links
-
-- Portfolio: https://www.minoanmystery.org
-- LinkedIn: https://www.linkedin.com/in/tomdimino/
-- GitHub: https://github.com/tdimino
-- Contact: contact@tomdimino.com
+- [Cognitive Designing: A.I. that have souls](https://www.tomdimino.com/Cognitive-Designing-AI-LLMs.pdf): how he programs LLMs at the API level, in Python and TypeScript, to be more human, internalize fragments of their users and dream about themselves (15 pages, PDF)
+- [Imbuing AI with soul](https://www.tomdimino.com/Imbuing-AI-with-Soul.pdf): what it means for AI to have a soul, why we would want it to, and how he learned to trust large language models (23 pages, PDF)
 
 ## Contact
 
-For AI/ML consulting, cognitive design projects, or scholarly discourse:
 - Email: contact@tomdimino.com
-- Calendly: https://calendly.com/tomdimino/
+- Calendly: https://calendly.com/tomdimino

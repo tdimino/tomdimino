@@ -1,29 +1,6 @@
-# robots.txt for tomdimino.com
+# robots.txt for tomdimino.com: every crawler, search and training alike, may read this one-page profile.
 
 User-agent: *
 Allow: /
 
-# AI Crawlers
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: Anthropic-AI
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-# Sitemap
 Sitemap: https://www.tomdimino.com/sitemap.xml
-
-# Host preference
-Host: https://www.tomdimino.com
