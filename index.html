@@ -3,60 +3,43 @@
 <head>
     <meta charset='utf-8'>
 
+<!-- The Person's name, url, image, identifier and sameAs mirror src/data/entity.ts in minoanmystery-astro: change both together. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": "https://www.tomdimino.com/#person",
+      "@type": "ProfilePage",
+      "@id": "https://www.tomdimino.com/#profilepage",
+      "url": "https://www.tomdimino.com/",
       "name": "Tom di Mino",
-      "url": "https://www.tomdimino.com",
-      "image": "https://www.tomdimino.com/Tom-di-Mino.jpg",
+      "dateModified": "2026-11-08",
+      "isPartOf": { "@id": "https://www.tomdimino.com/#website" },
+      "mainEntity": { "@id": "https://www.minoanmystery.org/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.minoanmystery.org/#person",
+      "name": "Tom di Mino",
+      "url": "https://www.minoanmystery.org",
+      "image": "https://www.minoanmystery.org/images/tyrian-profile.png",
+      "identifier": { "@type": "PropertyValue", "propertyID": "ORCID", "value": "0009-0008-3927-6609" },
       "sameAs": [
-        "https://www.minoanmystery.org",
-        "https://www.linkedin.com/in/tomdimino/",
+        "https://orcid.org/0009-0008-3927-6609",
         "https://github.com/tdimino",
-        "https://twitter.com/IdaeanDaktyl"
-      ],
-      "jobTitle": "AI/ML Engineer",
-      "worksFor": {
-        "@type": "Organization",
-        "@id": "https://www.plasma.ai/#organization",
-        "name": "Plasma AI",
-        "url": "https://www.plasma.ai"
-      },
-      "knowsAbout": [
-        "Artificial Intelligence",
-        "Large Language Models",
-        "Agent Orchestration",
-        "Cognitive Design",
-        "Semitic Linguistics",
-        "Linear A",
-        "Bronze Age Archaeology"
+        "https://x.com/IdaeanDaktyl",
+        "https://www.linkedin.com/in/tomdimino",
+        "https://tomdimino.substack.com",
+        "https://contra.com/tom_di_mino_ohcmeso7",
+        "https://www.tomdimino.com"
       ]
     },
     {
       "@type": "WebSite",
       "@id": "https://www.tomdimino.com/#website",
       "name": "Tom di Mino",
-      "url": "https://www.tomdimino.com",
-      "description": "Personal website of Tom di Mino, AI/ML engineer and cognitive designer",
-      "author": {
-        "@type": "Person",
-        "@id": "https://www.tomdimino.com/#person"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.tomdimino.com/"
-        }
-      ]
+      "url": "https://www.tomdimino.com/",
+      "author": { "@id": "https://www.minoanmystery.org/#person" }
     }
   ]
 }
@@ -189,15 +172,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
             <h2 class="Profession">Tech Writer & A.I. Designer </h2>
             
         <div class="Social-Media">
-            <a href="https://linkedin.com/in/tomdimino" title="Cognitive Designer with a penchant for poetry" target="_blank">
+            <a href="https://linkedin.com/in/tomdimino" title="Cognitive Designer with a penchant for poetry" target="_blank" rel="me noopener">
             <i class="fab fa-linkedin Social-Media-Icons"></i>
             </a>
 
-            <a href="https://twitter.com/IdaeanDaktyl" title="My musings on A.I., mysticism, and languages" target="_blank">
+            <a href="https://twitter.com/IdaeanDaktyl" title="My musings on A.I., mysticism, and languages" target="_blank" rel="me noopener">
             <i class="fab fa-twitter Social-Media-Icons"></i>
             </a>  
             
-            <a href="https://www.instagram.com/tamademino/" title="La mezcla de antiguo y moderno" target="_blank">
+            <a href="https://www.instagram.com/tamademino/" title="La mezcla de antiguo y moderno" target="_blank" rel="me noopener">
             <i class="fab fa-instagram Social-Media-Icons"></i>
             </a>
         </div>
@@ -263,7 +246,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
             </p>
         
             <p class="Post-Script">
-            <span class="PS">P.S.</span> If you'd like to discuss <a class="Paragraph-Link" href="https://www.minoanmystery.org">a bit of business</a>, <a class="Paragraph-Link" href="https://www.tomdimino.com/Cognitive-Designing-AI-LLMs.pdf">A.I. cognitive design</a>, or <a class="Paragraph-Link" href="https://www.minoanmystery.org/linear-a" target="_blank" rel="noopener">Linear A</a>, just say "<em>espresso</em>."
+            <span class="PS">P.S.</span> If you'd like to discuss <a class="Paragraph-Link" href="https://www.minoanmystery.org" rel="me">a bit of business</a>, <a class="Paragraph-Link" href="https://www.tomdimino.com/Cognitive-Designing-AI-LLMs.pdf">A.I. cognitive design</a>, or <a class="Paragraph-Link" href="https://linear-a.ai/" target="_blank" rel="noopener">Linear A</a>, just say "<em>espresso</em>."
             </p>
         </section>
         
